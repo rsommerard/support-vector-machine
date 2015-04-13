@@ -1,2 +1,7 @@
-# support-vector-machine
-Machine à vecteurs de support.
+# Machine à vecteurs de support
+
+1) Cas linéaire
+
+2) Cas non-linéaire
+    make_circles
+
