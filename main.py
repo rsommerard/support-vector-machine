@@ -36,8 +36,8 @@ w1 = clf.coef_[0][0]
 w2 = clf.coef_[0][1]
 b = clf.intercept_
 
-print 'w1 = ', w1, '|', 'w2 = ', w2
-print '-' * 80
+#print 'w1 = ', w1, '|', 'w2 = ', w2
+#print '-' * 80
 
 x11 = 0
 x12 = ((-1 * w1 * x11) / w2) - (b / w2)
@@ -132,5 +132,5 @@ hY = clf.predict(X_test)
 
 print 'No linear data and poly SVC'
 print 'Erreur:', abs(hY - Y_test).sum(), 'sur', len(Y_test)
-print 'Les prédictions moins bonnes car les données sont moins séparables. On obtient plus d\'erreurs.'
+print 'Les prédictions sont moins bonnes car les données sont moins séparables. On obtient plus d\'erreurs.'
 print '-' * 80
