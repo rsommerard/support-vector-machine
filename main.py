@@ -41,8 +41,13 @@ w1 = clf.coef_[0][0]
 w2 = clf.coef_[0][1]
 b = clf.intercept_
 
+<<<<<<< HEAD
 print 'coef w1 = ', w1, '|', 'coef w2 = ', w2
 print('-' * 80)
+=======
+#print 'w1 = ', w1, '|', 'w2 = ', w2
+#print '-' * 80
+>>>>>>> 509787a9ed8e3b58930403619e546b823496db30
 
 x11 = 0
 x12 = ((-1 * w1 * x11) / w2) - (b / w2)
@@ -122,8 +127,14 @@ clf = SVC(kernel='poly', degree=2)
 clf.fit(X_train, Y_train)
 hY = clf.predict(X_test)
 
+<<<<<<< HEAD
 print '# SVC polynomial avec des données non linéaires.'
 print "Nombre d'erreur:", abs(hY - Y_test).sum(), 'sur', len(Y_test)
 print "Les prédictions moins bonnes car les données sont moins séparables. On obtient plus d'erreurs."
 print("La dernière figure montre la classification des données par le SVC polynomial. Cette classification fait des erreurs, ce qui est normal car les données sont moins séparables que précédemment.")
+=======
+print 'No linear data and poly SVC'
+print 'Erreur:', abs(hY - Y_test).sum(), 'sur', len(Y_test)
+print 'Les prédictions sont moins bonnes car les données sont moins séparables. On obtient plus d\'erreurs.'
+>>>>>>> 509787a9ed8e3b58930403619e546b823496db30
 print '-' * 80
