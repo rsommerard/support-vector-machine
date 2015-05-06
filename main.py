@@ -16,18 +16,23 @@ X, Y = data
 X_train, X_test, Y_train, Y_test = cv.train_test_split(X, Y, test_size=0.3, train_size=0.7)
 
 fig, axes = plt.subplots(nrows=1, ncols=1)
-fig.set_size_inches(7, 7)
 axes.scatter(X[:,0], X[:,1], c=Y)
 
 clf = SVC(C=0.001, kernel='linear')
 clf.fit(X_train, Y_train)
 hY = clf.predict(X_test)
 
-print '-' * 80
-print 'Linear data and linear SVC'
-print 'Erreur:', abs(hY - Y_test).sum()
-print 'Les prédictions sont parfaites. On obtient des erreurs de 0.'
-print '-' * 80
+print('-' * 80)
+print("Dans ce TP on valide les résultats en séparant les données en deux catégories: les données d'apprentissages et les données de tests.")
+print("Les données de tests représentent 10% des données totales.")
+print("On applique la méthode de validation croiser pour tirer le nombre d'erreurs du modèle.")
+print('-' * 80)
+
+print('# SVC linéaire avec des données linéaires')
+print "Nombre d'erreurs:", abs(hY - Y_test).sum(), 'sur', len(Y_test)
+print("Les prédictions sont sans erreur.")
+print("La première figure montre les 2 marge w1 et w2 en pointillés ainsi que les vecteurs support en vert.")
+print('-' * 80)
 
 for sv in clf.support_vectors_:
   plt.scatter(sv[0], sv[1], color='g')
@@ -36,8 +41,8 @@ w1 = clf.coef_[0][0]
 w2 = clf.coef_[0][1]
 b = clf.intercept_
 
-print 'w1 = ', w1, '|', 'w2 = ', w2
-print '-' * 80
+print 'coef w1 = ', w1, '|', 'coef w2 = ', w2
+print('-' * 80)
 
 x11 = 0
 x12 = ((-1 * w1 * x11) / w2) - (b / w2)
@@ -61,16 +66,11 @@ plt.axes().add_line(line)
 
 plt.show()
 
-################################################################################
-################################################################################
-################################################################################
-
 data = datasets.make_circles(n_samples=n_samples, factor=.5, noise=.05)
 X, Y = data
 X_train, X_test, Y_train, Y_test = cv.train_test_split(X, Y, test_size=0.3, train_size=0.7)
 
 fig, axes = plt.subplots(nrows=1, ncols=1)
-fig.set_size_inches(7, 7)
 axes.scatter(X[:,0], X[:,1], c=Y)
 plt.show()
 
@@ -86,21 +86,17 @@ clf = SVC(kernel='linear')
 clf.fit(Xb_train, Y_train)
 hY = clf.predict(Xb_test)
 
-print 'No linear data and linear SVC'
-print 'Erreur:', abs(hY - Y_test).sum()
-print 'Les prédictions sont parfaites. On obtient des erreurs de 0.'
-print '-' * 80
-
-################################################################################
-################################################################################
-################################################################################
+print('# SVC linéaire avec des données non linéaires.')
+print "Nombre d'erreur:", abs(hY - Y_test).sum(), 'sur', len(Y_test)
+print("Les prédictions sont encore sans erreur.")
+print("La seconde figure montre la classification des données par le SVC linéaire. Cette classification est sans erreur.")
+print('-' * 80)
 
 data = datasets.make_circles(n_samples=n_samples, factor=.5, noise=.05)
 X, Y = data
 X_train, X_test, Y_train, Y_test = cv.train_test_split(X, Y, test_size=0.3, train_size=0.7)
 
 fig, axes = plt.subplots(nrows=1, ncols=1)
-fig.set_size_inches(7, 7)
 axes.scatter(X[:,0], X[:,1], c=Y)
 plt.show()
 
@@ -108,21 +104,17 @@ clf = SVC(kernel='poly', degree=2)
 clf.fit(X_train, Y_train)
 hY = clf.predict(X_test)
 
-print 'No linear data and poly SVC'
-print 'Erreur:', abs(hY - Y_test).sum()
-print 'Les prédictions sont parfaites. On obtient des erreurs de 0.'
-print '-' * 80
-
-################################################################################
-################################################################################
-################################################################################
+print('# SVC polynomial avec des données non linéaires.')
+print "Nombre d'erreur:", abs(hY - Y_test).sum(), 'sur', len(Y_test)
+print("Les prédictions sont sans erreur.")
+print("La troisième figure montre la classification des données par le SVC polynomial. Cette classification est sans erreur.")
+print('-' * 80)
 
 data = datasets.make_circles(n_samples=n_samples, factor=0.9, noise=.05)
 X, Y = data
 X_train, X_test, Y_train, Y_test = cv.train_test_split(X, Y, test_size=0.3, train_size=0.7)
 
 fig, axes = plt.subplots(nrows=1, ncols=1)
-fig.set_size_inches(7, 7)
 axes.scatter(X[:,0], X[:,1], c=Y)
 plt.show()
 
@@ -130,7 +122,8 @@ clf = SVC(kernel='poly', degree=2)
 clf.fit(X_train, Y_train)
 hY = clf.predict(X_test)
 
-print 'No linear data and poly SVC'
-print 'Erreur:', abs(hY - Y_test).sum(), 'sur', len(Y_test)
-print 'Les prédictions moins bonnes car les données sont moins séparables. On obtient plus d\'erreurs.'
+print '# SVC polynomial avec des données non linéaires.'
+print "Nombre d'erreur:", abs(hY - Y_test).sum(), 'sur', len(Y_test)
+print "Les prédictions moins bonnes car les données sont moins séparables. On obtient plus d'erreurs."
+print("La dernière figure montre la classification des données par le SVC polynomial. Cette classification fait des erreurs, ce qui est normal car les données sont moins séparables que précédemment.")
 print '-' * 80
